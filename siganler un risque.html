@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Base de Données des Risques</title>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+    <script src="script.js"></script>
+</head>
+<style>
+    /* styles.css */
+header {
+    text-align: center;
+    font-size: 24px;
+    background-color: #181715;
+    color: #fff;
+    padding: 20px;
+    text-transform: uppercase;
+    font-family: 'Comic Sans MS', cursive, sans-serif; /* Ecriture spéciale */
+}
+
+.container {
+    text-align: center;
+}
+
+.categories {
+    margin-top: 20px;
+}
+
+.category {
+    background-color: #3498db;
+    color: white;
+    padding: 10px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.category:hover {
+    background-color: #13191d;
+}
+
+.risks {
+    display: none;
+    margin-top: 10px;
+}
+
+.risk {
+    background-color: #bae3ca;
+    color: white;
+    padding: 8px;
+    margin: 5px 0;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.risk:hover {
+    background-color: #15251c;
+}
+/* styles.css */
+
+.risk-detail {
+    background-color: #f1c40f; /* Couleur de fond douce */
+    color: #2c3e50; /* Couleur de texte sombre */
+    padding: 20px; /* Augmenter le padding pour un meilleur espacement */
+    margin-top: 20px;
+    border-radius: 10px; /* Coins arrondis */
+    text-align: left; /* Alignement du texte */
+}
+
+.risk-name {
+    font-size: 24px; /* Taille de police plus grande pour le nom du risque */
+    text-align: center; /* Centrer le texte */
+    margin-bottom: 20px; /* Espace sous le titre */
+}
+
+.label {
+    font-size: 18px; /* Taille de police augmentée pour les labels */
+}
+
+.input {
+    padding: 10px; /* Augmenter le padding pour plus de confort */
+    border-radius: 5px; /* Coins arrondis */
+    border: 1px solid #bdc3c7; /* Bordure douce */
+    margin-bottom: 20px; /* Espacement entre les éléments */
+    width: 100%; /* Prendre toute la largeur disponible */
+}
+
+.report-button {
+    background-color: #e74c3c; /* Couleur rouge pour le bouton */
+    color: white; /* Texte blanc */
+    padding: 10px; /* Padding pour le bouton */
+    border-radius: 5px; /* Coins arrondis */
+    border: none; /* Pas de bordure */
+    cursor: pointer; /* Changer le curseur pour indiquer que c'est cliquable */
+    font-size: 16px; /* Taille de police du bouton */
+    margin-bottom: 20px; /* Espace sous le bouton */
+}
+
+.report-button:hover {
+    background-color: #c0392b; /* Changer la couleur au survol */
+}
+
+.report-message {
+    background-color: #2ecc71; /* Couleur verte pour le message de succès */
+    color: white;
+    padding: 15px; /* Padding pour le message */
+    font-size: 18px; /* Taille de police pour le message */
+    text-align: center;
+    border-radius: 10px; /* Coins arrondis */
+    margin-top: 20px; /* Espace au-dessus du message */
+}
+
+
+</style>
+<body>
+    <header>
+        <h1>Bienvenue</h1>
+    </header>
+    <div class="container">
+        <h1>Base de Données des Risques liees au logiciel</h1>
+        <div class="categories">
+            <!-- Catégories -->
+            <div class="category" onclick="toggleRisks(0)">Risque Humaines</div>
+            <div class="risks" id="risks-0">
+                <div class="risk" onclick="showRiskDetail(0, 'nom du risque : chutte hauteur', 'sidi med')">chutte hauteur</div>
+                <div class="risk" onclick="showRiskDetail(1, 'nom du risque : bleiassures', 'Med Lemin')">bleussures</div>
+            </div>
+
+            <div class="category" onclick="toggleRisks(1)">Risque materiel</div>
+            <div class="risks" id="risks-1">
+                <div class="risk" onclick="showRiskDetail(2, 'nom du risque : risque materiel 1', 'elghali souvi')">Risque materiel 2</div>
+                <div class="risk" onclick="showRiskDetail(3, 'nom du risque : Rique materiel 2', 'med')">Risque materiel 2</div>
+            </div>
+
+            <div class="category" onclick="toggleRisks(2)">Risque Juriduque</div>
+            <div class="risks" id="risks-2">
+                <div class="risk" onclick="showRiskDetail(4, 'Nom du risque : ridque juridique 1', 'Henne ethman')">Risque juridique 1</div>
+                <div class="risk" onclick="showRiskDetail(5, 'nim du risque : Risque 6', 'Med Lemin')">Risue juridique 2</div>
+            </div>
+
+            <div class="category" onclick="toggleRisks(3)">Risque financiers</div>
+            <div class="risks" id="risks-3">
+                <div class="risk" onclick="showRiskDetail(6, 'nom du risque : Risque financier 1', 'Teleb ahmed')">risque financier 1</div>
+                <div la  risk" onclick="showRiskDetail(7, 'nom du risque : risque financier 2 ', 'Med Lemin')">Rsque financier 2</div>
+            </div>
+
+            <div class="category" onclick="toggleRisks(4)">Risque technologique</div>
+            <div class="risks" id="risks-4">
+                <div class="risk" onclick="showRiskDetail(8, 'Nom du risque : Risque technologique 1', 'Med Lemin')">Risque juridique 1</div>
+                <div class="risk" onclick="showRiskDetail(9, 'Nom du risque :Risque technologique 2', 'Med Lemin')">Risque juridique 2</div>
+            </div>
+<div>
+    <button onclick="reportRisk()" style="background: red; color: white;">ajoutez un nouveau risque</button>
+</div>
+            <!-- Autres catégories... -->
+        </div>
+
+        <!-- Détails du risque -->
+        <div class="risk-detail" id="risk-detail" style="display:none;">
+            <h2 id="risk-name" class="risk-name"></h2>
+            <label for="comment" class="label">Commentaire:</label>
+            <input type="text" id="comment" class="input">
+            <label for="responsible" class="label">Responsable:</label>
+            <input type="text" id="responsible" value="Med Lemin" class="input">
+            <button onclick="reportRisk()" class="report-button">Signaler le risque</button>
+            <div id="report-message" class="report-message" style="display:none;">
+                Le risque a été signalé au responsable
+            </div>
+        </div>
+        
+    </div>
+    <script>
+        // script.js
+function toggleRisks(index) {
+    var risks = document.getElementById(`risks-${index}`);
+    if (risks.style.display === 'none' || risks.style.display === '') {
+        risks.style.display = 'block';
+    } else {
+        risks.style.display = 'none';
+    }
+}
+
+function showRiskDetail(riskId, riskName, responsibleName) {
+    var riskDetail = document.getElementById('risk-detail');
+    document.getElementById('risk-name').innerText = riskName;
+    document.getElementById('responsible').value = responsibleName;
+    riskDetail.style.display = 'block';
+}
+
+function reportRisk() {
+    var reportMessage = document.getElementById('report-message');
+    reportMessage.style.display = 'block';
+    setTimeout(() => {
+        reportMessage.style.display = 'none';
+    }, 3000); // Afficher le message pendant 3 secondes
+}
+
+    </script>
+</body>
+</html>
